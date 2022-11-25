@@ -18,6 +18,7 @@ def add_two_numbers(l1, l2)
   # (n1 + n2).to_s.split(//).map(&:to_i).reverse
 end
 
+# 参考: https://leetcode.com/problems/add-two-numbers/discuss/2279248/Ruby-solution
 def add_two_numbers_by_digit(node1, node2, moveup)
   if node1.nil? && node2.nil?
     return moveup == 0 ? nil : ListNode.new(moveup)
