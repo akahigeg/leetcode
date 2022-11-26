@@ -11,6 +11,8 @@
 
 # Runtime: 445 ms, faster than 82.59% of Ruby online submissions for Palindrome Linked List.
 # Memory Usage: 226.1 MB, less than 19.40% of Ruby online submissions for Palindrome Linked List.
+#
+# 後半を配列にしてないためメモリ節約になるかとおもいきやそうでもなかった
 def is_palindrome(head)
   front_half_reverse = []
 
