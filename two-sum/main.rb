@@ -1,7 +1,28 @@
 # @param {Integer[]} nums
 # @param {Integer} target
 # @return {Integer[]}
+
+# Runtime: 75 ms, faster than 98.43% of Ruby online submissions for Two Sum.
+# Memory Usage: 212.1 MB, less than 55.36% of Ruby online submissions for Two Sum.
 def two_sum(nums, target)
+  hashmap = {}
+
+  i = 0
+  Kernel.loop do
+    break if nums[i].nil?
+
+    diff = target - nums[i]
+    return i, hashmap[diff] if hashmap.key?(diff)
+
+    hashmap[nums[i]] = i
+
+    i += 1
+  end
+end
+
+# Runtime: 2594 ms, faster than 5.00% of Ruby online submissions for Two Sum.
+# Memory Usage: 211.3 MB, less than 91.93% of Ruby online submissions for Two Sum.
+def two_sum_my(nums, target)
   i = 0
 
   Kernel.loop do
