@@ -1,20 +1,24 @@
 # @param {String} s
 # @return {Boolean}
 
-# Runtime: 144 ms, faster than 61.12% of Ruby online submissions for Valid Parentheses.
-# Memory Usage: 211.2 MB, less than 37.07% of Ruby online submissions for Valid Parentheses.
+# Runtime: 83 ms, faster than 93.13% of Ruby online submissions for Valid Parentheses.
+# Memory Usage: 210.9 MB, less than 89.51% of Ruby online submissions for Valid Parentheses.
 def is_valid(s)
   pairs = { "(" => ")", "[" => "]", "{" => "}" }
   stack = []
   s.each_char do |char|
-    # カッコ以外の文字列があっても大丈夫
+    # 問題にはないがカッコ以外の文字列があっても大丈夫という実用に即した仕様
     next unless "()[]{}".include?(char)
 
-    # charが閉じカッコでスタックの頭に対応する開きカッコがあればpop
-    if pairs[stack&.last] == char
-      stack.pop
-    else
+    if pairs.keys.include?(char)
+      # 開きカッコをスタックに積む
       stack << char
+    else
+      # スタックの頭が対応する開きカッコでない場合はfalse それ以降をチェックする必要はない
+      return false unless pairs[stack&.last] == char
+
+      # 対応する開きカッコがあればそれをスタックから取り除く
+      stack.pop
     end
   end
   stack.empty?
