@@ -14,27 +14,29 @@ def generate_parenthesis(n)
   answer
 end
 
-def backtrack(answer, n, sequence = [], open_index = 0, close_index = 0)
-  # n*2 => 括弧を使い切ったらその時点のanswerをreturn
+def backtrack(answer, n, sequence = [], open_count = 0, close_count = 0)
+  p "open: #{open_count}: close: #{close_count}, n: #{n}, #{sequence.join}" + (sequence.size == n * 2 ? " [OK]" : "")
+
+  # open_count + close_count == 2 になったときreturn
   if sequence.size == n * 2
     answer.push sequence.join
     return answer
   end
 
   # まず左側から開きカッコを並べていく
-  if open_index < n
-    p "#{open_index}: #{n}"
+  if open_count < n
     sequence.push "("
-    # open_indexに開きカッコを置いたパターンが網羅される
-    backtrack(answer, n, sequence, open_index + 1, close_index)
+    # 開きカッコを増やしたパターンで再帰
+    backtrack(answer, n, sequence, open_count + 1, close_count)
     sequence.pop
   end
 
-  # 次にclose_indexがopen_indexより小さければ閉じカッコを置く
-  if close_index < open_index
+  # 次にclose_countがopen_countより小さければ閉じカッコを置く
+  # => 無駄な候補を試さない
+  if close_count < open_count
     sequence.push ")"
-    # close_indexに閉じカッコを置いたパターンが網羅される
-    backtrack(answer, n, sequence, open_index, close_index + 1)
+    # 閉じカッコを増やしたパターンで再帰
+    backtrack(answer, n, sequence, open_count, close_count + 1)
     sequence.pop
   end
 end
@@ -43,6 +45,7 @@ p generate_parenthesis(1)
 p generate_parenthesis(2)
 p generate_parenthesis(3)
 p generate_parenthesis(4)
+p generate_parenthesis(5)
 
 # 1 => ()
 # 2 => ()(), (())
