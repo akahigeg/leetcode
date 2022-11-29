@@ -9,6 +9,7 @@ def length_of_longest_substring_with_queue(s)
   queue = []
   longest = 0
   s.each_char do |char|
+    # 線形探索になるが、探索数が最大で文字種までになるので遅くならない
     if index = queue.index(char)
       (index + 1).times { queue.shift }
     end
