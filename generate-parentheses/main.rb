@@ -15,7 +15,7 @@ def generate_parenthesis(n)
 end
 
 def backtrack(answer, n, sequence = [], open_index = 0, close_index = 0)
-  # 括弧を使い切ったらその時点のanswerをreturn
+  # n*2 => 括弧を使い切ったらその時点のanswerをreturn
   if sequence.size == n * 2
     answer.push sequence.join
     return answer
@@ -23,6 +23,7 @@ def backtrack(answer, n, sequence = [], open_index = 0, close_index = 0)
 
   # まず左側から開きカッコを並べていく
   if open_index < n
+    p "#{open_index}: #{n}"
     sequence.push "("
     # open_indexに開きカッコを置いたパターンが網羅される
     backtrack(answer, n, sequence, open_index + 1, close_index)
