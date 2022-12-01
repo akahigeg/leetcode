@@ -15,7 +15,8 @@ def search(nums, target)
     center = right + 1 / 2
     return center if nums[center] == target
 
-    if nums[left] <= nums[center]
+    # 通常の二分探索に加えて、配列の途中で最大値に達して0から続いている場合を考慮
+    if nums[left] < nums[center]
       # 左側
       if target > nums[center] || target < nums[left]
         left = center + 1
@@ -46,3 +47,4 @@ end
 
 p search([4, 5, 6, 7, 0, 1, 2], 0)
 p search([4, 5, 6, 7, 0, 1, 2], 3)
+p search([3, 1], 3)
