@@ -33,3 +33,14 @@ end
 p combination_sum([2,3,6,7], 7)
 p combination_sum([2,3,5], 8)
 p combination_sum([2], 1)
+
+candidates = [2,3,6,7]
+
+start = 0
+(start..(candidates.size - 1)).each do |i|
+  p "i: #{i}, n: #{candidates[i]}"
+end
+
+candidates[start..(candidates.size - 1)].each_with_index do |n, i|
+  p "i: #{i}, n: #{n}"
+end
