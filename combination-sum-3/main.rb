@@ -9,6 +9,7 @@
 # バックトラックする前
 # Runtime: 185 ms, faster than 10.00% of Ruby online submissions for Combination Sum III.
 # Memory Usage: 211.1 MB, less than 50.00% of Ruby online submissions for Combination Sum III.
+MAX_NUMBER = 9
 def combination_sum3(k, n)
   @number_count = k
   @target = n
@@ -33,7 +34,7 @@ def find_sums(sums = [], combination = [], start = 1)
     return
   end
 
-  (start..9).each do |i|
+  (start..MAX_NUMBER).each do |i|
     combination << i
 
     # @step => 512
