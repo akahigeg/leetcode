@@ -36,6 +36,7 @@ p combination_sum([2], 1)
 
 candidates = [2,3,6,7]
 
+
 start = 0
 (start..(candidates.size - 1)).each do |i|
   p "i: #{i}, n: #{candidates[i]}"
