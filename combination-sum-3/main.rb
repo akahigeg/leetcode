@@ -2,25 +2,47 @@
 # @param {Integer} n
 # @return {Integer[][]}
 
+# バックトラック
+# Runtime: 151 ms, faster than 40.00% of Ruby online submissions for Combination Sum III.
+# Memory Usage: 211.1 MB, less than 40.00% of Ruby online submissions for Combination Sum III.
+#
+# バックトラックする前
 # Runtime: 185 ms, faster than 10.00% of Ruby online submissions for Combination Sum III.
 # Memory Usage: 211.1 MB, less than 50.00% of Ruby online submissions for Combination Sum III.
 def combination_sum3(k, n)
   @number_count = k
   @target = n
-  find_sums()
+  @step = 0
+  sums = []
+  find_sums(sums)
+
+  p @step
+  sums
 end
 
-def find_sums(sums = [], numbers = [], start = 1)
-  # p numbers
-  (start..9).each do |i|
-    numbers << i
+def find_sums(sums = [], combination = [], start = 1)
+  @step += 1
+  # p combination
 
-    if numbers.sum == @target && numbers.size == @number_count
-      sums << numbers.clone 
-    end
+  # @step => 96
+  return if combination.size > @number_count || combination.sum > @target
 
-    find_sums(sums, numbers, i + 1)
-    numbers.pop
+  # @step => 481
+  if combination.sum == @target && combination.size == @number_count
+    sums << combination.clone 
+    return
+  end
+
+  (start..@target).each do |i|
+    combination << i
+
+    # @step => 512
+    # if combination.sum == @target && numbers.size == @number_count
+    #   sums << combination.clone 
+    # end
+
+    find_sums(sums, combination, i + 1)
+    combination.pop
   end
 
   sums
@@ -29,3 +51,4 @@ end
 p combination_sum3(3, 7)
 p combination_sum3(3, 9)
 p combination_sum3(4, 1)
+
