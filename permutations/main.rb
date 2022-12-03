@@ -14,6 +14,10 @@ def permute(nums)
 end
 
 def find_permutation(nums, answer = [], combination = [], start = 0)
+  (0...nums.size).each do |n|
+    p n
+
+  end
   
 end
 
