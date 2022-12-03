@@ -33,7 +33,7 @@ def find_sums(sums = [], combination = [], start = 1)
     return
   end
 
-  (start..@target).each do |i|
+  (start..9).each do |i|
     combination << i
 
     # @step => 512
@@ -51,4 +51,3 @@ end
 p combination_sum3(3, 7)
 p combination_sum3(3, 9)
 p combination_sum3(4, 1)
-
