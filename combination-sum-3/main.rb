@@ -3,8 +3,8 @@
 # @return {Integer[][]}
 
 # バックトラック
-# Runtime: 151 ms, faster than 40.00% of Ruby online submissions for Combination Sum III.
-# Memory Usage: 211.1 MB, less than 40.00% of Ruby online submissions for Combination Sum III.
+# Runtime: 71 ms, faster than 100.00% of Ruby online submissions for Combination Sum III.
+# Memory Usage: 210.9 MB, less than 70.00% of Ruby online submissions for Combination Sum III.
 #
 # バックトラックする前
 # Runtime: 185 ms, faster than 10.00% of Ruby online submissions for Combination Sum III.
