@@ -33,6 +33,7 @@ end
 p combination_sum([2,3,6,7], 7)
 p combination_sum([2,3,5], 8)
 p combination_sum([2], 1)
+p combination_sum([10,1,2,7,6,5], 8)
 
 candidates = [2,3,6,7]
 
