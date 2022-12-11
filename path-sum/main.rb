@@ -16,7 +16,11 @@
 def has_path_sum(root, target_sum)
   return false if root.nil?
 
-  vertical_sum(root, target_sum)
+  target_sum -= root.val
+
+  return target_sum == 0 if root.left.nil? && root.right.nil?
+
+  has_path_sum(root.left, target_sum) || has_path_sum(root.right, target_sum)
 end
 
 def vertical_sum(node, target_sum, current_sum = 0)
