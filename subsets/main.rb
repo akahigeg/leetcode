@@ -1,8 +1,8 @@
 # @param {Integer[]} nums
 # @return {Integer[][]}
 
-# Runtime 123 ms Beats 70.27%
-# Memory 211.1 MB Beats 29.73%
+# Runtime 142 ms Beats 64.86%
+# Memory 211 MB Beats 89.19% (ソートを入れてたとき Memory 211.1 MB Beats 29.73%)
 def subsets(nums)
   sets = [[]]
 
@@ -12,6 +12,19 @@ def subsets(nums)
   end
 
   sets
+end
+
+# combinationメソッドをつかったケース
+#
+# ref: https://leetcode.com/problems/subsets/submissions/858429692/
+# Runtime 96 ms Beats 78.38%
+# Memory 211.1 MB Beats 29.73%
+def subsets_with_combination(nums)
+  ans = []
+  (0..nums.size).each do |size|
+    ans += nums.combination(size).to_a
+  end
+  ans
 end
 
 p subsets([1, 2, 3])
