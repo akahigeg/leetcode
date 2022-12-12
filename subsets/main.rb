@@ -4,8 +4,6 @@
 # Runtime 123 ms Beats 70.27%
 # Memory 211.1 MB Beats 29.73%
 def subsets(nums)
-  nums.sort!
-
   sets = [[]]
 
   (0...nums.size).each do |i|
