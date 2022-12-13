@@ -1,9 +1,9 @@
 class ListNode
   attr_accessor :val, :next
 
-  def initialize(val)
+  def initialize(val, _next = nil)
     @val = val
-    @next = nil
+    @next = _next
   end
 
   def to_array
