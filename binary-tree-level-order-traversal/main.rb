@@ -54,3 +54,4 @@ def traversal(node, levels, current_level = 0)
 end
 
 p level_order([3, 9, 20, nil, nil, 15, 7].to_tree)
+p level_order([3, 9, 20, 7, 10, 15, 21].to_tree)
