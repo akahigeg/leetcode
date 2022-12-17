@@ -13,6 +13,30 @@
 require_relative "../lib/ruby-tree-node"
 
 # ref: https://leetcode.com/problems/maximum-depth-of-binary-tree/solutions/176802/maximum-depth-of-binary-tree/?orderBy=most_relevant
+# Solusion 3
+#
+# Runtime 94 ms Beats 85%
+# Memory 211.5 MB Beats 32.27%
+def max_depth(root)
+  return 0 if root.nil?
+
+  stack = []
+
+  stack << [1, root]
+  max_depth = 0
+  until stack.empty?
+    current_depth, node = stack.pop
+
+    max_depth = [max_depth, current_depth].max
+    stack << [current_depth + 1, node.left] if node.left
+    stack << [current_depth + 1, node.right] if node.right
+  end
+
+  max_depth
+end
+
+# ref: https://leetcode.com/problems/maximum-depth-of-binary-tree/solutions/176802/maximum-depth-of-binary-tree/?orderBy=most_relevant
+# Solusion 1
 #
 # Runtime 88 ms Beats 89.9%
 # Memory 211.3 MB Beats 80.91%
