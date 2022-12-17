@@ -12,9 +12,24 @@
 
 require_relative "../lib/ruby-tree-node"
 
+# ref: https://leetcode.com/problems/maximum-depth-of-binary-tree/solutions/176802/maximum-depth-of-binary-tree/?orderBy=most_relevant
+#
+# Runtime 88 ms Beats 89.9%
+# Memory 211.3 MB Beats 80.91%
+def max_depth_by_recursion(root)
+  return 0 if root.nil?
+
+  left = max_depth(root.left)
+  right = max_depth(root.right)
+
+  [left, right].max + 1
+end
+
+# 自力で解いたやり方
+#
 # Runtime 94 ms Beats 85%
 # Memory 211.4 MB Beats 56.82%
-def max_depth(root)
+def max_depth_by_queue(root)
   return 0 if root.nil?
 
   level_count = 0
