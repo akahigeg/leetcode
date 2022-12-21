@@ -2,9 +2,39 @@
 # @param {String[]} word_dict
 # @return {Boolean}
 
+require "set"
+
+# Runtime 108 ms Beats 80.36%
+# Memory 211.2 MB Beats 5.36%
+def word_break(s, word_dict)
+  word_set = Set.new(word_dict)
+  queue = []
+  visited = Set.new
+
+  queue << 0
+
+  until queue.empty?
+    # p queue
+    start = queue.shift
+    next if visited.include?(start)
+
+    (s.size - start + 1).times do |i|
+      p s[start, i]
+      if word_set.include?(s[start, i])
+        queue << start + i
+        return true if start + i == s.size
+      end
+    end
+
+    visited.add(start)
+  end
+
+  false
+end
+
 # 自前の実装
 # Time Limit Exceeded
-def word_break(s, word_dict)
+def my_word_break(s, word_dict)
   wb(s, "", s, word_dict)
 end
 
