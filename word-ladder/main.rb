@@ -3,9 +3,50 @@
 # @param {String[]} word_list
 # @return {Integer}
 
+# Runtime 390 ms Beats 87.50%
+# Memory 217 MB Beats 64.6%
+def ladder_length(begin_word, end_word, word_list)
+  return 0 unless word_list.include?(end_word)
+
+  length = begin_word.size
+
+  all_combo = {}
+  word_list.each do |word|
+    length.times do |i|
+      all_combo[intermediate_word_for(word, i)] ||= []
+      all_combo[intermediate_word_for(word, i)] << word
+    end
+  end
+
+  queue = [[begin_word, 1]]
+  visited = { begin_word => true }
+  until queue.empty?
+    current_word, level = queue.shift
+    length.times do |i|
+      intermediate_word = intermediate_word_for(current_word, i)
+      next unless all_combo[intermediate_word]
+      all_combo[intermediate_word].each do |word|
+        return level + 1 if word == end_word
+        next if visited[word]
+
+        visited[word] = true
+        queue << [word, level + 1]
+      end
+
+      all_combo[intermediate_word] = []
+    end
+  end
+
+  0
+end
+
+def intermediate_word_for(word, i)
+  "#{word[0, i]}*#{word[i + 1, word.size]}"
+end
+
 # 自前の実装
 # 途中で抜けちゃうので最短が求まらない
-def ladder_length(begin_word, end_word, word_list)
+def my_ladder_length(begin_word, end_word, word_list)
   return 0 unless word_list.include?(end_word)
 
   @count = 1
@@ -54,3 +95,4 @@ end
 
 p ladder_length("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"])
 p ladder_length("hit", "cog", ["hot", "dot", "dog", "lot", "log"])
+p ladder_length("hit", "dog", ["hot", "dog"])
