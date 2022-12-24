@@ -105,26 +105,37 @@ end
 
 p fib_recurse_memo(10)
 
+require "matrix"
+
+# 対数時間
+def fib_log(n)
+  (Matrix[[1, 1], [1, 0]] ** n)[0, 1]
+end
+
+p fib_log(10)
+
 Benchmark.bm 10 do |r|
   r.report "dp" do
-    10.times { fib(35) }
+    10.times { fib(30) }
   end
   r.report "no dp" do
-    10.times { fib_no_dp(35) }
+    10.times { fib_no_dp(30) }
   end
   r.report "no dp 2" do
-    10.times { fib_no_dp(35) }
+    10.times { fib_no_dp(30) }
   end
   r.report "dp 2" do
-    10.times { fib(35) }
+    10.times { fib(30) }
   end
   r.report "recurse" do
     # 遅い
-    10.times { fib_recurse(35) }
+    10.times { fib_recurse(30) }
   end
   r.report "recurse with memo" do
-    # 遅い
-    10.times { fib_recurse_memo(35) }
+    10.times { fib_recurse_memo(30) }
+  end
+  r.report "log" do
+    10.times { fib_log(30) }
   end
 end
 
@@ -132,26 +143,31 @@ end
 
 p "fib"
 result = Benchmark.realtime do
-  100.times { fib(35) }
+  100.times { fib(30) }
 end
 p result
 
 p "fib_no_db"
 result = Benchmark.realtime do
-  100.times { fib_no_dp(35) }
+  100.times { fib_no_dp(30) }
 end
 p result
 
 p "fib_recurse"
 result = Benchmark.realtime do
   # 遅い
-  100.times { fib_recurse(35) }
+  100.times { fib_recurse(30) }
 end
 p result
 
 p "fib_recurse_memo"
 result = Benchmark.realtime do
-  # 遅い
-  100.times { fib_recurse_memo(35) }
+  100.times { fib_recurse_memo(30) }
+end
+p result
+
+p "fib_log"
+result = Benchmark.realtime do
+  100.times { fib_log(30) }
 end
 p result
