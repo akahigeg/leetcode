@@ -1,15 +1,9 @@
 # @param {Integer[]} nums
 # @return {Integer}
 
-def rob(nums)
-  return 0 if nums.empty?
-
-  max
-end
-
 # Runtime 84 ms Beats 63.96%
 # Memory 211 MB Beats 46.19%
-def rob_use_memo(nums)
+def rob(nums)
   memo = {}
   rob_from(0, nums, memo)
 end
