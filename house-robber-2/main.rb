@@ -1,9 +1,6 @@
 # @param {Integer[]} nums
 # @return {Integer}
 
-# Runtime 102 ms Beats 83.78%
-# Memory 210.9 MB Beats 86.49%
-
 # Runtime 80 ms Beats 89.19%
 # Memory 211 MB Beats 54
 def rob(nums)
@@ -27,6 +24,10 @@ def rob_from(i, nums, memo)
   sum = [rob_from(i + 1, nums, memo), rob_from(i + 2, nums, memo) + nums[i]].max
   memo[i] = sum
 end
+
+# メモ化しない場合
+# Runtime 102 ms Beats 83.78%
+# Memory 210.9 MB Beats 86.49%
 
 p rob([2, 3, 2])
 p rob([1, 2, 3, 1])
