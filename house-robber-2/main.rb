@@ -3,23 +3,29 @@
 
 # Runtime 102 ms Beats 83.78%
 # Memory 210.9 MB Beats 86.49%
+
+# Runtime 80 ms Beats 89.19%
+# Memory 211 MB Beats 54
 def rob(nums)
   return 0 if nums.size == 0 || nums.nil?
   return nums[0] if nums.size == 1
 
-  [rob_from(nums[1..]), rob_from(nums[0...(nums.size - 1)])].max
+  memo1 = {}
+  amount1 = rob_from(0, nums[1..], memo1)
+
+  memo2 = {}
+  amount2 = rob_from(0, nums[0...(nums.size - 1)], memo2)
+
+  [amount1, amount2].max
 end
 
-def rob_from(nums)
-  t1 = 0
-  t2 = 0
-  nums.each do |n|
-    temp = t1
-    t1 = [n + t2, t1].max
-    t2 = temp
-  end
+def rob_from(i, nums, memo)
+  return 0 if i >= nums.size
 
-  t1
+  return memo[i] if memo[i]
+
+  sum = [rob_from(i + 1, nums, memo), rob_from(i + 2, nums, memo) + nums[i]].max
+  memo[i] = sum
 end
 
 p rob([2, 3, 2])
