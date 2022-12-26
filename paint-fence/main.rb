@@ -2,6 +2,7 @@
 # @param {Integer} k
 # @return {Integer}
 
+# 分割統治とダイナミックプログラミング
 # Runtime 83 ms Beats 100%
 # Memory 211 MB Beats 100%
 def num_ways(n, k)
