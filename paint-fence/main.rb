@@ -1,9 +1,9 @@
 # @param {Integer} n
 # @param {Integer} k
 # @return {Integer}
-def num_ways(n, k)
-  # n < k の場合はすべての色を使う必要はない
 
+# TLE
+def my_num_ways(n, k)
   @post_count = n
   @colors = (0...k).to_a
   @patterns = []
@@ -17,11 +17,13 @@ end
 
 def paint_post(painted_posts = [])
   if @post_count == painted_posts.size
-    @patterns << painted_posts.clone if painted_posts.uniq.sort == @colors
+    # すべての色を使う必要はない
+    @patterns << painted_posts.clone # if painted_posts.uniq.sort == @colors
     return
   end
 
   @colors.each do |color|
+    # 同じ数が2つ連続していたら、3連続になってしまうのでもう付け加えない＆そのパターンをそれ以上追う必要はない
     next if painted_posts[-2..] == [color, color]
 
     painted_posts << color
@@ -31,8 +33,8 @@ def paint_post(painted_posts = [])
   end
 end
 
-# p num_ways(3, 2)
-# p num_ways(3, 3)
-# p num_ways(7, 2)
+p num_ways(3, 2)
+p num_ways(3, 3)
+p num_ways(7, 2)
 p num_ways(1, 2)
 p num_ways(2, 2)
