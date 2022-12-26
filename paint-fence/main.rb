@@ -19,6 +19,8 @@ def total_ways(i, color_count)
 end
 
 # TLE
+# n = 2, k = 4630 でTLE
+# kの数が膨大になり得ることと、パターンすべてじゃなくてパターンの数だけ求めればいいのでこのアプローチは間違っていた
 def my_num_ways(n, k)
   @post_count = n
   @colors = (0...k).to_a
@@ -26,7 +28,7 @@ def my_num_ways(n, k)
 
   paint_post
 
-  p @patterns
+  # p @patterns
 
   @patterns.size
 end
@@ -50,7 +52,7 @@ def paint_post(painted_posts = [])
 end
 
 p num_ways(3, 2)
-p num_ways(3, 3)
-p num_ways(7, 2)
+# p num_ways(3, 3)
+# p num_ways(7, 2)
 p num_ways(1, 2)
 p num_ways(2, 2)
