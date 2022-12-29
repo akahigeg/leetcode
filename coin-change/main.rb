@@ -15,14 +15,17 @@ def dfs(remain)
   return 0 if remain == 0
 
   min_cost = Float::INFINITY
+  # すべての種類のコインについて、すべての組み合わせを試す深さ優先探索
   @coins.each do |coin|
     result = @memo[remain - coin]
     unless result
+      # まずは同じ種類のコインについて深く掘っていき、底までいったら次の種類のコインに、といった処理
       @memo[remain - coin] = result = dfs(remain - coin)
     end
 
     next if result == -1
 
+    # 成立する組み合わせがここに来る
     min_cost = [min_cost, result + 1].min
   end
 
