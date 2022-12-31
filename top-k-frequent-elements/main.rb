@@ -24,6 +24,8 @@ def num_counts(nums)
   counts
 end
 
+# クイックセレクトを使うやり方は割愛 そういうものがあるのだと覚えておけばいいかなと
+
 p top_k_frequent([1,1,1,2,2,3], 2)
 p top_k_frequent([1,3,3,2,2,3], 2)
 p top_k_frequent([1], 1)
