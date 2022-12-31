@@ -5,6 +5,8 @@
 # Runtime 103 ms Beats 85.71%
 # Memory 211.8 MB Beats 97.48%
 def top_k_frequent(nums, k)
+  return nums if k == nums.size
+
   i = 0
   counts = {}
   while i < nums.size
@@ -13,7 +15,7 @@ def top_k_frequent(nums, k)
     i+=1
   end
 
-  counts.sort{|c1, c2| c2[1] <=> c1[1]}.map{|n,count| n }[0...k]
+  counts.sort_by{|k,v| -v}.map{|n,count| n }[0...k]
 end
 
 p top_k_frequent([1,1,1,2,2,3], 2)
