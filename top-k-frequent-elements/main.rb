@@ -10,7 +10,7 @@ def top_k_frequent(nums, k)
   i = 0
   counts = {}
   while i < nums.size
-    counts[nums[i]] ||= 0
+    # counts[nums[i]] ||= 0 この行なくても動く。マジで？
     counts[nums[i]] += 1
     i+=1
   end
