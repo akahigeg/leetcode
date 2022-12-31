@@ -7,15 +7,21 @@
 def top_k_frequent(nums, k)
   return nums if k == nums.size
 
+  counts = num_counts(nums)
+
+  counts.sort_by{|k,v| -v}.map{|n,count| n }[0...k]
+end
+
+def num_counts(nums)
   i = 0
   counts = {}
   while i < nums.size
-    # counts[nums[i]] ||= 0 この行なくても動く。マジで？
+    counts[nums[i]] ||= 0 
     counts[nums[i]] += 1
     i+=1
   end
 
-  counts.sort_by{|k,v| -v}.map{|n,count| n }[0...k]
+  counts
 end
 
 p top_k_frequent([1,1,1,2,2,3], 2)
