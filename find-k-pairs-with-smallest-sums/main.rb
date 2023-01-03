@@ -2,43 +2,50 @@
 # @param {Integer[]} nums2
 # @param {Integer} k
 # @return {Integer[][]}
-def k_smallest_pairs(nums1, nums2, k)
-  index1 = 0
-  index2 = 0
 
+require "algorithms"
+include Containers
+
+# Runtime 1058 ms Beats 57.14%
+# Memory 224.2 MB Beats 28.57%
+def k_smallest_pairs(nums1, nums2, k)
+  @nums1 = nums1
+  @nums2 = nums2
+
+  @queue = PriorityQueue.new
   pairs = []
 
-  loop do
-    pairs << [nums1[index1], nums2[index2]]
-
-    break if pairs.size == k
-
-    if nums1[index1] == nums2[index2]
-      if nums2[index2 + 1]
-        index2 += 1
-      else
-        index1 += 1
-      end
-    else
-      if nums1[index1] < nums2[index2]
-        index2 += 1
-        if nums2[index2].nil?
-          index2 -= 1
-          index1 += 1
-        end
-      else
-        index1 += 1
-        if nums1[index1].nil?
-          index1 -= 1
-          index2 += 1
-        end
-      end
-    end
-
-    break if nums1[index1].nil? || nums2[index2].nil?
+  push(0, 0)
+  while !@queue.empty? && pairs.size < k
+    _, i, j = @queue.pop
+    # p "i:#{i}, j:#{j}"
+    pairs << [nums1[i], nums2[j]]
+    push(i, j + 1)
+    push(i + 1, 0) if j == 0
   end
 
   pairs
+end
+
+def push(i, j)
+  return if @nums1[i].nil? || @nums2[j].nil?
+
+  sum = @nums1[i] + @nums2[j]
+  @queue.push([sum, i, j], -sum)
+end
+
+# TLE
+def tle_k_smallest_pairs(nums1, nums2, k)
+  nums1.product(nums2).sort { |p1, p2| p1.sum <=> p2.sum }[0...k]
+
+  # pairs = []
+  # nums1.each do |n1|
+  #   nums2.each do |n2|
+  #     pairs << [n1, n2]
+  #   end
+  # end
+
+  # pairs.sort { |p1, p2| p1.sum <=> p2.sum }[0..k]
 end
 
 p k_smallest_pairs([1, 1, 2], [1, 2, 3], 10) # => [[1,1],[1,1],[2,1],[1,2],[1,2],[2,2],[1,3],[1,3],[2,3]]
