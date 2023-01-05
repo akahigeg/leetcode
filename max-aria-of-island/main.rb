@@ -21,11 +21,12 @@ def max_area_of_island(grid)
   max_area
 end
 
+# 再帰を使わないでstackを使った方が速いが、コードの可読性を優先した
 def search_island(from, current_area, grid)
   y, x = from
   return current_area if grid[y].nil? || grid[y][x].nil? || grid[y][x] != 1
 
-  grid[y][x] = 0
+  grid[y][x] = 0 # 0にすることで訪問済みを表す
   current_area += 1
 
   [[y + 1, x], [y - 1, x], [y, x + 1], [y, x - 1]].each do |yx|
