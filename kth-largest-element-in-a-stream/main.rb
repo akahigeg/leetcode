@@ -1,5 +1,5 @@
 # ref: https://leetcode.com/problems/kth-largest-element-in-a-stream/discuss/1172853/Ruby-Faster-100
-class KthLargest
+class KthLargestWithNoHeap
 
   # :type k: Integer
   # :type nums: Integer[]
@@ -18,6 +18,32 @@ class KthLargest
     end
     @data.pop if @data.length > @max_size
     @data.last
+  end
+end
+
+# TLE
+require "algorithms"
+include Containers
+
+class KthLargest
+
+  # :type k: Integer
+  # :type nums: Integer[]
+  def initialize(k, nums)
+    @max_size = k
+    @heap = MinHeap.new(nums)
+    while @heap.size > @max_size
+      @heap.pop
+    end
+  end
+
+  # :type val: Integer
+  # :rtype: Integer
+  def add(val)
+    @heap.push(val)
+    @heap.pop if @heap.size > @max_size
+
+    @heap.min
   end
 end
 
