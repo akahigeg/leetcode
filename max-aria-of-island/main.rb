@@ -1,8 +1,10 @@
 # @param {Integer[][]} grid
 # @return {Integer}
+
+# Runtime: 201 ms, faster than 40.38% of Ruby online submissions for Max Area of Island.
+# Memory Usage: 212.9 MB, less than 7.69% of Ruby online submissions for Max Area of Island.
 def max_area_of_island(grid)
   max_area = 0
-  stack = []
 
   y = 0
   while y < grid.size
@@ -27,7 +29,7 @@ def search_island(from, current_area, grid)
   current_area += 1
 
   [[y + 1, x], [y - 1, x], [y, x + 1], [y, x - 1]].each do |yx|
-    current_area = search_island(yx, current_area, grid) unless yx[0].negative? && yx[1].negative?
+    current_area = search_island(yx, current_area, grid) unless yx[0].negative? || yx[1].negative?
   end
 
   current_area
@@ -42,5 +44,5 @@ p max_area_of_island([
     [1, 1, 0, 0, 1, 1, 1, 0],
   ]) #=> 0
 
-# p max_area_of_island([[0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0], [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0], [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]]) #=> 6
-# p max_area_of_island([[0, 0, 0, 0, 0, 0, 0, 0]]) #=> 0
+p max_area_of_island([[0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0], [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0], [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]]) #=> 6
+p max_area_of_island([[0, 0, 0, 0, 0, 0, 0, 0]]) #=> 0
