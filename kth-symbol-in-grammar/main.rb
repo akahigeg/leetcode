@@ -2,20 +2,52 @@
 # @param {Integer} k
 # @return {Integer}
 
-# Time Limit Exceeded
+# Runtime: 149 ms, faster than 50.00% of Ruby online submissions for K-th Symbol in Grammar.
+# Memory Usage: 211 MB, less than 100.00% of Ruby online submissions for K-th Symbol in Grammar.
 def kth_grammar(n, k)
-  replaces = { "0" => "01", "1" => "10" }
+  return 0 if n == 1
+  (1 - k % 2) ^ kth_grammar(n - 1, (k + 1) / 2)
+end
+
+# Time Limit Exceeded
+# メモ化で工夫してみたけどダメだった
+def my_kth_grammar(n, k)
+  memo = [["0", "zo"], ["1", "oz"]] # 0 => z(zero), 1 => o(one)
 
   rows = ["0"]
 
   i = 1
   while i < n
-    nums = rows[i - 1].split(//)
-    rows << nums.map { |n| replaces[n] }.join
+    nums = rows[i - 1].clone
+    nums = replace(nums, memo)
+
+    nums = codes_to_nums(nums)
+
+    memo.unshift([nums, nums_to_codes(replace(nums.clone, memo))])
+    # p "nums: #{nums}, codes: #{codes}"
+
+    rows << nums
     i += 1
   end
 
   rows[-1][k - 1].to_i
+  # rows
+end
+
+def replace(nums, memo)
+  memo.each do |r|
+    nums.gsub!(r[0], r[1])
+  end
+
+  nums
+end
+
+def nums_to_codes(nums)
+  nums.gsub("0", "z").gsub("1", "o")
+end
+
+def codes_to_nums(codes)
+  codes.gsub("z", "0").gsub("o", "1")
 end
 
 # 0
