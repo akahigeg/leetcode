@@ -2,9 +2,15 @@
 # @param {Integer} k
 # @return {Integer}
 
+# Runtime: 63 ms, faster than 50.00% of Ruby online submissions for K-th Symbol in Grammar.
+# Memory Usage: 211.2 MB, less than 100.00% of Ruby online submissions for K-th Symbol in Grammar.
+def kth_grammar(n, k)
+  (k - 1).to_s(2).count("1") % 2
+end
+
 # Runtime: 149 ms, faster than 50.00% of Ruby online submissions for K-th Symbol in Grammar.
 # Memory Usage: 211 MB, less than 100.00% of Ruby online submissions for K-th Symbol in Grammar.
-def kth_grammar(n, k)
+def kth_grammar_parent_variant(n, k)
   return 0 if n == 1
   (1 - k % 2) ^ kth_grammar(n - 1, (k + 1) / 2)
 end
