@@ -13,7 +13,28 @@
 
 require_relative "../lib/ruby-tree-node"
 
+# ref: https://leetcode.com/problems/split-bst/solution/
+# Runtime: 140 ms, faster than 100.00% of Ruby online submissions for Split BST.
+# Memory Usage: 211.1 MB, less than 100.00% of Ruby online submissions for Split BST.
 def split_bst(root, target)
+  return [nil, nil] if root.nil?
+
+  if root.val <= target
+    bns = split_bst(root.right, target)
+    root.right = bns[0]
+
+    [root, bns[1]]
+  else
+    bns = split_bst(root.left, target)
+    root.left = bns[1]
+
+    [bns[0], root]
+  end
+end
+
+# 解けず
+# 与えられるrootが二分探索木なら解ける
+def my_split_bst(root, target)
   new_root = nil
 
   queue = [root]
@@ -66,7 +87,9 @@ end
 p split_bst([4, 2, 6, 1, 3, 5, 7].to_tree, 2)
 p split_bst([1].to_tree, 1)
 p split_bst([1, 2].to_tree, 1)
-p split_bst([10, 5, 20, 3, 9, 15, 25, nil, nil, 8, nil, nil, nil, nil, nil, 6, nil, nil, 7], 6)
+trees = split_bst([10, 5, 20, 3, 9, 15, 25, nil, nil, 8, nil, nil, nil, nil, nil, 6, nil, nil, 7].to_tree, 6)
+p trees[0].to_a
+p trees[1].to_a
 
 # Input
 # [10,5,20,3,9,15,25,null,null,8,null,null,null,null,null,6,null,null,7]
