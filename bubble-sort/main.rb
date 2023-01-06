@@ -12,5 +12,6 @@ def bubble_sort(nums)
   nums
 end
 
-p bubble_sort([4, 3, 1, 2, 5])
+p bubble_sort([4, 3, 1, 2, 6, 5])
+p bubble_sort([4, 3, 1, 2, 6, 5, 0, -1])
 p bubble_sort(((1..9).to_a + (1..9).to_a).shuffle)
