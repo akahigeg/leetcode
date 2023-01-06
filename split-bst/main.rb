@@ -60,9 +60,18 @@ def split_bst(root, target)
     parent_node = node
   end
 
-  [new_root, root]
+  [new_root.to_a, root.to_a]
 end
 
 p split_bst([4, 2, 6, 1, 3, 5, 7].to_tree, 2)
 p split_bst([1].to_tree, 1)
 p split_bst([1, 2].to_tree, 1)
+p split_bst([10, 5, 20, 3, 9, 15, 25, nil, nil, 8, nil, nil, nil, nil, nil, 6, nil, nil, 7], 6)
+
+# Input
+# [10,5,20,3,9,15,25,null,null,8,null,null,null,null,null,6,null,null,7]
+# 6
+# Output
+# [[6],[10,5,20,3,9,15,25,null,null,8,null,null,null,null,null,7]]
+# Expected
+# [[5,3,6],[10,9,20,8,null,15,25,7]]
