@@ -6,6 +6,20 @@ class TreeNode
     @left = left
     @right = right
   end
+
+  def to_a
+    array = []
+    queue = [self]
+    until queue.empty?
+      node = queue.shift
+      array << node.val
+
+      queue << node.left unless node.left.nil?
+      queue << node.right unless node.right.nil?
+    end
+
+    array
+  end
 end
 
 class Array
