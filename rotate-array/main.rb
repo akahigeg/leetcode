@@ -5,11 +5,8 @@
 # Runtime: 159 ms, faster than 74.07% of Ruby online submissions for Rotate Array.
 # Memory Usage: 218.8 MB, less than 46.67% of Ruby online submissions for Rotate Array.
 def rotate(nums, k)
-  k.times do
-    tail = nums.pop
-    nums.unshift(tail)
-  end
-
+  # nums.rotate!(-k)
+  k.times { nums.unshift(nums.pop) } # popはどんな言語でも一般的に速い。unshiftは遅いことがあるがRubyのunshiftは速い
   nums
 end
 
