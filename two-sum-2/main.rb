@@ -6,7 +6,8 @@ def two_sum(numbers, target)
   while i < numbers.size - 1
     j = i + 1
     while j < numbers.size
-      return [i, j] if numbers[i] + numbers[j] == target
+      # 1-indexedなのでそれぞれ+1して返す
+      return [i + 1, j + 1] if numbers[i] + numbers[j] == target
       j += 1
     end
     i += 1
