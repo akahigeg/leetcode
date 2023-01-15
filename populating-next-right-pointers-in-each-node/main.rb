@@ -47,6 +47,8 @@ class Array
   end
 end
 
+# Runtime: 166 ms, faster than 78.26% of Ruby online submissions for Populating Next Right Pointers in Each Node.
+# Memory Usage: 246.5 MB, less than 56.52% of Ruby online submissions for Populating Next Right Pointers in Each Node.
 # @param {Node} root
 # @return {Node}
 def connect(root)
