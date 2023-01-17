@@ -1,20 +1,31 @@
 # @param {Integer} n
 # @param {Integer} k
 # @return {Integer[][]}
+
+# ref: https://leetcode.com/problems/combinations/?envType=study-plan&id=algorithm-i
+# Runtime: 232 ms, faster than 80.00% of Ruby online submissions for Combinations.
+# Memory Usage: 215.1 MB, less than 8.00% of Ruby online submissions for Combinations.
 def combine(n, k)
   result = []
 
-  i = 1
-  while i <= n
-    j = i + 1
-    while j <= n
-      result << [i, j]
-      j += 1
-    end
-    i += 1
-  end
+  backtrack(n, k, 1, [], result)
 
   result
+end
+
+def backtrack(n, k, first, current, result)
+  if current.size == k
+    result << current.clone
+    return
+  end
+
+  i = first
+  while i <= n
+    current << i
+    backtrack(n, k, i + 1, current, result)
+    current.pop
+    i += 1
+  end
 end
 
 p combine(4, 2)
