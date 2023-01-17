@@ -18,4 +18,5 @@ def combine(n, k)
 end
 
 p combine(4, 2)
+p combine(2, 1)
 p combine(1, 1)
