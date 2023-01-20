@@ -18,6 +18,8 @@ def single_number_with_mash(nums)
   nums.uniq.sum * 2 - nums.sum
 end
 
+# Runtime: 100 ms, faster than 70.93% of Ruby online submissions for Single Number.
+# Memory Usage: 212.2 MB, less than 94.77% of Ruby online submissions for Single Number.
 def single_number_with_bit_manupilation(nums)
   a = 0
   nums.each do |i|
