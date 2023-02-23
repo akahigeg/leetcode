@@ -13,13 +13,13 @@ def combine(n, k)
   result
 end
 
-def backtrack(n, k, first, current, result)
+def backtrack(n, k, first_index, current, result)
   if current.size == k
     result << current.clone
     return
   end
 
-  i = first
+  i = first_index
   while i <= n
     current << i
     backtrack(n, k, i + 1, current, result)
