@@ -1,8 +1,26 @@
 # @param {Integer[]} height
 # @return {Integer}
 
-# Time Limit Exceeded
+# Runtime: 189 ms, faster than 20.12% of Ruby online submissions for Container With Most Water.
+# Memory Usage: 217.5 MB, less than 78.05% of Ruby online submissions for Container With Most Water.
 def max_area(height)
+  r = 0
+  l = height.size - 1
+  max = 0
+  while r < l
+    max = [[height[r], height[l]].min * (l - r), max].max
+    if height[r] <= height[l]
+      r += 1
+    else
+      l -= 1
+    end
+  end
+
+  max
+end
+
+# Time Limit Exceeded
+def max_area_bf(height)
   r = 0
   l = height.size - 1
   max = 0
